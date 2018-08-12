@@ -1,0 +1,41 @@
+
+.div-crop {
+
+  height: 255px;
+  background-color: black;
+  margin-left: -24px;
+  margin-right: -24px;
+  overflow: hidden;
+}
+
+.div-crop img{
+  margin-top: 0px;
+}
+
+.div-gallery {
+  height: 100px;
+  width: 100%;
+  margin-left: -24px;
+  margin-right: -24px;
+  margin-bottom: 1em;
+}
+
+.div-gallery div {
+  width: 25%;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.div-corp img:not(:first-child){
+  position: absolute;
+  height: 80px;
+  background-color: azure;
+  top: 250px;
+  width: 85px;
+}
+
+.gallery-xs {
+  margin-left: -16px;
+  margin-right: -16px;
+}
+

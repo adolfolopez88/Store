@@ -1,0 +1,17 @@
+<div fxLayout="row" >
+
+  <div class="div-gallery"  fxFlex="15" fxLayout="column">
+    <div *ngFor="let image of images; let i = index">
+        <img #imagesGallery  src="{{ image.downloadUrl }}" alt=""  (click)="changeImage($event)">
+    </div>
+  </div>
+
+
+  <div class="div-crop" fxFlex="85" >
+
+    <img #imageDisplay src="{{ images[0].downloadUrl }}" alt=""
+    [@imagesAnimation]="animationState"  (@imagesAnimation.done)="resetAnimation()">
+
+  </div>
+</div>
+

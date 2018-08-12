@@ -1,0 +1,31 @@
+<div fxLayout="row wrap" fxLayoutAlign="center none"  class="main-cotainer">
+
+  <div class="div-header" fxFlex="90">
+    <h2> Name of the product</h2>
+  </div>
+
+  <section  fxFlex="55">
+    <app-gallery-detail [images]="images"></app-gallery-detail>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam saepe iure veritatis fugit,
+      distinctio inventore, voluptatem obcaecati cumque qui in, accusamus totam dolores. Odit possimus accusamus earum aliquid aut laudantium.</p>
+
+  </section>
+
+  <aside fxFlex="35" fxLayout="column">
+
+    <div class="div-sell-detail" >
+      <div class="div-price">
+        <span>Don't pay $119.95</span>
+        <div style="background-color: red; height: 80px; padding-left:1em;">
+          <span style="font-size:30px; font-weight: bold; vertical-align: super;">$</span>
+          <span style="font-size:60px; font-weight: bold;"> 59</span>
+        </div>
+      </div>
+
+      <button  mat-raised-button color="accent">Add card</button>
+      <button  mat-raised-button color="accent">share</button>
+    </div>
+
+  </aside>
+
+</div>

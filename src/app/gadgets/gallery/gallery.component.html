@@ -1,0 +1,14 @@
+<div class="div-crop" ngClass.xs="gallery-xs">
+
+  <img mat-card-image  #imageDisplay src="{{ images[0].downloadUrl }}" alt=""
+  [@imagesAnimation]="animationState"  (@imagesAnimation.done)="resetAnimation()">
+
+</div>
+
+<div class="div-gallery" ngClass.xs="gallery-xs" >
+  <div *ngFor="let image of images; let i = index">
+      <img mat-card-md-image #imagesGallery  src="{{ image.downloadUrl }}" alt=""  (click)="changeImage($event)">
+  </div>
+</div>
+
+

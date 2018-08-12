@@ -1,0 +1,25 @@
+
+.div-crop {
+  height: 400px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.div-crop img{
+  height: 400px;
+}
+
+.div-gallery {
+  margin-bottom: 1em;
+}
+
+.div-gallery div {
+  width: 100%;
+  height: 100px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.div-gallery div img {
+  height: 100%;
+}
