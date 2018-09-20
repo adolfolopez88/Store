@@ -1,11 +1,26 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button color="primary" (click)="drawer.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>Store</span>
+
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span>Store</span>
+
+    <span class="span-spacer"></span>
+
+
+    <button mat-icon-button>
+
+      <mat-icon *ngIf="user === null else avatar" >account_circle</mat-icon>
+
+      <ng-template #avatar>
+        <img class="avatar" src="{{ user.photoUrl }}" alt="">
+      </ng-template>
+    </button>
+
 </mat-toolbar>
 
-<mat-sidenav-container class="sidenav-container" >
+<mat-sidenav-container class="sidenav-container oulet" >
 
   <mat-sidenav #drawer class="drawer" mode="over" autosize>
 
@@ -64,38 +79,5 @@
 
 <router-outlet></router-outlet>
 </mat-sidenav-container>
-
-
-<!--
-
-
-
-<div fxLayout="row" >
-
-  <div fxFlex="30" class="div-form">
-
-    <mat-form-field class="site-input">
-      <input  matInput #placesRefOrigin="ngx-places" placeholder="Origin" ngx-google-places-autocomplete />
-    </mat-form-field>
-
-    <mat-form-field class="site-input">
-      <input  matInput #placesRefDestination="ngx-places" placeholder="Destination" ngx-google-places-autocomplete  />
-    </mat-form-field>
-
-    <button mat-button color="primary" (click)="findTheWay()"> Go !</button>
-  </div>
-
-  <div fxFlex="70" >
-
-      <agm-map [latitude]="mapLat" [longitude]="mapLng" [zoom]="mapZoom" [disableDefaultUI]="false" [zoomControl]="false" >
-          <agm-direction [origin]="origin" [destination]="destination">
-          </agm-direction>
-      </agm-map>
-  </div>
-
-</div>
-
-
--->
 
 

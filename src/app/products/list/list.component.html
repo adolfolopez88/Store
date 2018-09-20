@@ -1,13 +1,12 @@
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.25%" >
 
     <div fxFlex="noshrink"  *ngFor="let product of products" >
+
         <mat-card class="card">
-          <!--
+
             <mat-card-header>
-              <div mat-card-avatar class="header-image"></div>
-              <mat-card-title>Shiba Inu</mat-card-title>
-              <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-            </mat-card-header>-->
+              <h5>{{ product.name }}</h5>
+            </mat-card-header>
 
             <app-gallery [images]="product.images"></app-gallery>
 

@@ -1,5 +1,6 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -17,11 +18,19 @@ import { MatToolbarModule, MatInputModule, MatFormFieldModule,
 
 import { AngularFireModule } from 'angularfire2';
 
+import flamelink from 'flamelink';
+import { AuthService } from './services/auth.service';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+
+export const flame = flamelink(environment.firebase);
 
 const routes: Routes =  [
   { path: 'customers', loadChildren: './customers/customers.module#CustomersModule' },
   { path: 'products', loadChildren: './products/products.module#ProductsModule' },
+  { path: 'users',  loadChildren: './users/users.module#UsersModule' },
   { path: 'gadgets', loadChildren: './gadgets/gadgets.module#GadgetsModule' },
+  { path: 'dispatches', loadChildren: './dispatches/dispatches.module#DispatchesModule' }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
@@ -44,6 +53,7 @@ export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
     AgmDirectionModule,
 
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
 
     MatToolbarModule,
     MatInputModule,
@@ -55,7 +65,7 @@ export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
     MatIconModule
 
   ],
-  providers: [],
+  providers: [AuthService, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

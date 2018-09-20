@@ -1,13 +1,5 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { SwUpdate } from '@angular/service-worker';
-
-import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
-import { GeolocationService } from './services/geolocation.service';
-
-export interface LatLng {
-  lat: number | string;
-  lng: number | string;
-}
+import { AuthService, User } from './services/auth.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +7,25 @@ export interface LatLng {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
+  user: User = null;
+  constructor(private authService: AuthService) {
+    this.authService.user$.subscribe((user) => {
+      this.user = user;
+    });
+  }
+
+  public ngOnInit() {
+
+  }
+}
+
+
+/**
+  private updates: SwUpdate, private geolocation: GeolocationService,
+  updates.available.subscribe(event => {
+      updates.activateUpdate().then(() => document.location.reload());
+    });
   title = 'app';
   update = false;
 
@@ -26,12 +37,6 @@ export class AppComponent implements OnInit {
   mapLat: number | string;
   mapLng: number | string;
   mapZoom = 12;
-
-  constructor(private updates: SwUpdate, private geolocation: GeolocationService ) {
-    updates.available.subscribe(event => {
-      updates.activateUpdate().then(() => document.location.reload());
-    });
-  }
 
   public ngOnInit() {
     this.geolocation.getLocation().subscribe((location) => {
@@ -53,4 +58,13 @@ export class AppComponent implements OnInit {
     console.log(this.placesRefDestination.place);
   }
 
+  import { SwUpdate } from '@angular/service-worker';
+
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { GeolocationService } from './services/geolocation.service';
+
+export interface LatLng {
+  lat: number | string;
+  lng: number | string;
 }
+  */

@@ -1,13 +1,15 @@
+
+.avatar {
+  border-radius: 50%;
+  margin-top: -5px;
+}
+
 .div-form {
   padding: 1em;
 }
 
 .div-form > * {
   width: 100%;
-}
-
-agm-map {
-  height: 500px;
 }
 
 .drawer-menu-container, mat-expansion-panel {
@@ -43,4 +45,12 @@ mat-expansion-panel-header:hover {
 .drawer {
   width: 248px;
   background-color: #19212b;
+}
+
+.span-spacer {
+  flex: 1 1 auto;
+}
+
+.oulet {
+  min-height: 800px;
 }

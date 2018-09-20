@@ -1,0 +1,51 @@
+<div fxLayout="row" >
+  <div fxFlex="40" class="div-form">
+    <h3>Envios</h3>
+
+    <mat-form-field class="form-field">
+      <mat-select placeholder="Cliente">
+        <mat-option *ngFor="let customer of customers" value="{{ customer.id }}">
+          {{ customer.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <input  matInput  placeholder="Tipo de carga" />
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field class="form-field">
+        <input matInput [matDatepicker]="picker" placeholder="Fecha de salida">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <input matInput [matDatepicker]="picker2" placeholder="Fecha de arrivo">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <br>
+    <mat-form-field class="form-field">
+      <input  matInput #placesRefOrigin="ngx-places" placeholder="Origin" ngx-google-places-autocomplete />
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <input  matInput #placesRefDestination="ngx-places" placeholder="Destination" ngx-google-places-autocomplete  />
+    </mat-form-field>
+    <br>
+
+    <button mat-button color="primary" (click)="createDispatch()"> Go !</button>
+  </div>
+
+  <div fxFlex="60" >
+    <agm-map [latitude]="mapLat" [longitude]="mapLng" [zoom]="mapZoom" [disableDefaultUI]="false" [zoomControl]="false" >
+      <agm-direction [origin]="origin" [destination]="destination">
+      </agm-direction>
+    </agm-map>
+  </div>
+
+</div>
