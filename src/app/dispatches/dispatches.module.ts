@@ -9,6 +9,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DetailComponent } from './detail/detail.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { DirectionService } from './../services/direction.service';
 
 const routes: Routes =  [
   { path: 'detail', component: DetailComponent }
@@ -19,6 +22,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild(routes);
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     routing,
 
     FlexLayoutModule,
@@ -32,9 +36,11 @@ export const routing: ModuleWithProviders = RouterModule.forChild(routes);
     MatButtonModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+
+    HttpClientModule
   ],
   declarations: [DetailComponent],
-  providers: []
+  providers: [DirectionService]
 })
 export class DispatchesModule { }

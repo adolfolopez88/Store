@@ -18,7 +18,7 @@ import { MatToolbarModule, MatInputModule, MatFormFieldModule,
 
 import { AngularFireModule } from 'angularfire2';
 
-import flamelink from 'flamelink';
+import * as flamelink from 'flamelink';
 import { AuthService } from './services/auth.service';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 

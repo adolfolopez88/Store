@@ -1,44 +1,68 @@
 <div fxLayout="row" >
+
   <div fxFlex="40" class="div-form">
-    <h3>Envios</h3>
 
-    <mat-form-field class="form-field">
-      <mat-select placeholder="Cliente">
-        <mat-option *ngFor="let customer of customers" value="{{ customer.id }}">
-          {{ customer.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <h2>Dispatches</h2>
 
-    <mat-form-field class="form-field">
-      <input  matInput  placeholder="Tipo de carga" />
-    </mat-form-field>
+    <form [formGroup]="dispatchForm" (ngSubmit)="createDispatch()" >
 
+      <mat-form-field class="form-field">
+        <mat-select placeholder="Customer" formControlName="customerId" >
+          <mat-option *ngFor="let customer of customers" value="{{ customer.id }}" >{{ customer.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!--
+      <mat-form-field class="form-field">
+        <input  matInput  placeholder="Charge" formControlName="charge"/>
+
+        <mat-error *ngIf="dispatchForm.controls.charge.errors?.required">
+            charge is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>-->
+
+      <br>
+
+      <mat-form-field class="form-field">
+          <input matInput [matDatepicker]="picker" placeholder="Departure date" formControlName="departureDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="dispatchForm.controls.departureDate.errors?.required">
+              Departure date is <strong>required</strong>
+          </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+          <input matInput [matDatepicker]="picker2" placeholder="Arrive date" formControlName="arriveDate">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+          <mat-error *ngIf="dispatchForm.controls.arriveDate.errors?.required">
+              Arrive date is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+      <br>
+      <mat-form-field class="form-field">
+        <input  matInput #placesRefOrigin="ngx-places" placeholder="Origin" formControlName="origin" ngx-google-places-autocomplete />
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <input  matInput #placesRefDestination="ngx-places" placeholder="Destination" formControlName="destination" ngx-google-places-autocomplete  />
+      </mat-form-field>
+      <br>
+
+      <button mat-button color="primary" type="submit" [disabled]="!dispatchForm.valid"> Go !</button>
+    </form>
     <br>
-
-    <mat-form-field class="form-field">
-        <input matInput [matDatepicker]="picker" placeholder="Fecha de salida">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field class="form-field">
-        <input matInput [matDatepicker]="picker2" placeholder="Fecha de arrivo">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-    </mat-form-field>
-
+    <b>distance:</b> {{ travelDetail.distance?.text }}
     <br>
-    <mat-form-field class="form-field">
-      <input  matInput #placesRefOrigin="ngx-places" placeholder="Origin" ngx-google-places-autocomplete />
-    </mat-form-field>
-
-    <mat-form-field class="form-field">
-      <input  matInput #placesRefDestination="ngx-places" placeholder="Destination" ngx-google-places-autocomplete  />
-    </mat-form-field>
+    <b>duration:</b>{{ travelDetail.duration?.text }}
     <br>
+    <br>
+    <br>
+    <br>
+    <!--dispatchForm.value | json -->
 
-    <button mat-button color="primary" (click)="createDispatch()"> Go !</button>
+
   </div>
 
   <div fxFlex="60" >

@@ -15,6 +15,7 @@ export class ListComponent implements OnInit, AfterViewInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
+
     this.productService.getProducts().then(products => {
       this.products = Object.keys(products).map(productIndex => {
          return products[productIndex];
