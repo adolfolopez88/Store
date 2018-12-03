@@ -51,9 +51,8 @@ export class AuthService {
     return this.authFirebase.auth.signInWithPopup(provider)
       .then((credential) => {
         this.updateUser(credential.user);
-        this.router.navigate(['/products/list']);
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   }
 
   public loginFacebook() {
@@ -73,6 +72,10 @@ export class AuthService {
     return doc.subscribe(snap => {
       return snap.payload.exists ? this.userCol.doc(user.uid).update(data) : this.userCol.doc(user.uid).set(data);
     });
+  }
+
+  public logout() {
+    return this.authFirebase.auth.signOut();
   }
 
 }

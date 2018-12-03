@@ -1,3 +1,4 @@
+import { MessagingService } from './services/messaging.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,6 +25,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 
 export const flame = flamelink(environment.firebase);
+flame.firestoreService.settings({timestampsInSnapshots: true});
 
 const routes: Routes =  [
   { path: 'customers', loadChildren: './customers/customers.module#CustomersModule' },
@@ -65,7 +67,7 @@ export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
     MatIconModule
 
   ],
-  providers: [AuthService, AngularFireAuth],
+  providers: [AuthService, AngularFireAuth, MessagingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

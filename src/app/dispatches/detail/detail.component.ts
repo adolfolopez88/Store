@@ -1,11 +1,10 @@
-import { DirectionService } from './../../services/direction.service';
 import { GeolocationService } from './../../services/geolocation.service';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Component, OnInit, ViewChild, Input, OnChanges, SimpleChange } from '@angular/core';
 import { CustomersService } from '../../services/customers.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
-// import {  } from '@types/googlemaps'
+import {  } from '@types/googlemaps'
 
 export class Dispatch {
   customerId: number;
@@ -57,14 +56,14 @@ export class DetailComponent implements OnInit {
 
 
   constructor(private customersService: CustomersService,
-    private geolocation: GeolocationService, private directionService: DirectionService)  {
+    private geolocation: GeolocationService)  {
       console.log(this.dispatchForm);
   }
-
 
   ngOnInit() {
 
     this.customersService.getCustomers().then(customers => {
+
       this.customers = Object.keys(customers).map(index => {
         return customers[index];
       });
@@ -125,5 +124,11 @@ export class DetailComponent implements OnInit {
 
   get charge() {
     return this.dispatchForm.get('charge');
+  }
+
+  getEnviroment() {
+    this.customersService.getItems().subscribe(item => {
+      console.log(item);
+    });
   }
 }

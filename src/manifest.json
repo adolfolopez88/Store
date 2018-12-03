@@ -1,11 +1,13 @@
 {
   "name": "store",
+  "gcm_sender_id": "103953800507",
   "short_name": "store",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
-  "display": "standalone",
-  "scope": "/",
+  "display": "fullscreen",
+  "orientation":"any",
   "start_url": "/",
+  "scope": "/",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",

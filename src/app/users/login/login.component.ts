@@ -9,12 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) {
-    this.authService.user$.subscribe((user) => {
-      if (user !== null) {
-        this.router.navigate(['/products/list']);
-      }
-    });
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit() {

@@ -1,3 +1,4 @@
+import { FormComponent } from './form/form.component';
 import { MatButtonModule, MatFormFieldModule, MatInputModule,
    MatSelectModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { AgmDirectionModule } from 'agm-direction';
@@ -11,7 +12,6 @@ import { CommonModule } from '@angular/common';
 import { DetailComponent } from './detail/detail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { DirectionService } from './../services/direction.service';
 
 const routes: Routes =  [
   { path: 'detail', component: DetailComponent }
@@ -40,7 +40,7 @@ export const routing: ModuleWithProviders = RouterModule.forChild(routes);
 
     HttpClientModule
   ],
-  declarations: [DetailComponent],
-  providers: [DirectionService]
+  declarations: [DetailComponent, FormComponent],
+  providers: []
 })
 export class DispatchesModule { }
