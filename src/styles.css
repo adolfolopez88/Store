@@ -1,2 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+  margin: 0;
+}
+
+.input-80 {
+  width: 80%;
+}
+
+.input-30 {
+  width: 30%;
+}
+
+.input-35 {
+  width: 35%;
+}
+
+.form-field {
+  margin: 1em;
+}
+
+.mat-drawer-content  {
+  min-height: 900px;
+ }

@@ -1,0 +1,12 @@
+<div [@listAnimation]="races.length">
+  <button (click)="pushItem()">add Item</button>
+  <button (click)="removeItem()">pop Item</button>
+
+
+
+
+  <div *ngFor="let race of races" id="list" style="background: red;">
+    <h2>{{race.name}}</h2>
+    <p>{{race.startInstant}}</p>
+  </div>
+</div>

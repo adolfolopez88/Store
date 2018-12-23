@@ -1,93 +1,80 @@
-<div fxLayout="row" fxLayoutAlign="center start">
 
-  <div fxFlex.xs="90" fxFlex.lg="50"  fxFlex.md="70" class="div-form">
-    <h2>Job applicant registration form</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="register()" >
 
-    <form [formGroup]="registerForm" (ngSubmit)="register()" >
+    <mat-form-field class="form-field">
+      <input matInput  placeholder="First name" formControlName="firstName"/>
 
-      <mat-form-field class="form-field">
-        <input matInput  placeholder="First name" formControlName="firstName"/>
+      <mat-error *ngIf="submitted && form.firstName?.errors?.required">
+          First name is <strong>required</strong>
+      </mat-error>
 
-        <mat-error *ngIf="submitted && form.firstName?.errors?.required">
-            First name is <strong>required</strong>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <input matInput  placeholder="Last name" formControlName="lastName" />
+
+        <mat-error *ngIf="submitted && form.lastName?.errors?.required">
+            Last name is <strong>required</strong>
         </mat-error>
 
-      </mat-form-field>
+    </mat-form-field>
 
+    <br>
+    <mat-form-field class="form-field">
+        <input matInput  placeholder="Other Name" formControlName="otherName"/>
+    </mat-form-field>
 
-      <mat-form-field class="form-field">
-          <input matInput  placeholder="Last name" formControlName="lastName"/>
-
-          <mat-error *ngIf="submitted && form.lastName?.errors?.required">
-              Last name is <strong>required</strong>
-          </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="form-field">
-          <input matInput  placeholder="Other Name" formControlName="otherName"/>
-      </mat-form-field>
-
-      <br>
-
-      <mat-form-field class="form-field">
-          <input matInput [matDatepicker]="pickerDateOfBirth" placeholder="Date of birth" formControlName="dateOfBirth">
-          <mat-datepicker-toggle matSuffix [for]="pickerDateOfBirth"></mat-datepicker-toggle>
-          <mat-datepicker #pickerDateOfBirth></mat-datepicker>
-          <mat-error *ngIf="submitted && form.dateOfBirth?.errors?.required">
-              Date of birth date is <strong>required</strong>
-          </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="form-field">
-          <input  matInput #placeAddress="ngx-places" placeholder="Address" formControlName="address" ngx-google-places-autocomplete />
-
-          <mat-error *ngIf="submitted && form.address?.errors?.required">
-              Address is <strong>required</strong>
-          </mat-error>
-      </mat-form-field>
-
-      <br>
-
-      <mat-form-field class="form-field">
-        <input matInput  placeholder="Phone" formControlName="phone"/>
-
-        <mat-error *ngIf="submitted && form.phone?.errors?.required">
-            Phone name is <strong>required</strong>
+    <mat-form-field class="form-field">
+        <input matInput [matDatepicker]="pickerDateOfBirth" placeholder="Date of birth" formControlName="dateOfBirth" >
+        <mat-datepicker-toggle matSuffix [for]="pickerDateOfBirth"></mat-datepicker-toggle>
+        <mat-datepicker #pickerDateOfBirth></mat-datepicker>
+        <mat-error *ngIf="submitted && form.dateOfBirth?.errors?.required">
+            Date of birth date is <strong>required</strong>
         </mat-error>
-      </mat-form-field>
+    </mat-form-field>
 
-      <mat-form-field class="form-field">
-          <input matInput  placeholder="Email" formControlName="email"/>
+    <br>
+    <mat-form-field class="form-field">
+        <input  matInput #placeAddress="ngx-places" placeholder="Address" formControlName="address" ngx-google-places-autocomplete />
 
-          <mat-error *ngIf="submitted && form.email?.errors?.required">
-              Email name is <strong>required</strong>
-          </mat-error>
-
-          <mat-error *ngIf="submitted && form.email?.errors?.email">
-              Required a <strong>valid</strong> email
-          </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="form-field">
-        <input matInput [matDatepicker]="pickerDateAvailable" placeholder="Date available" formControlName="dateAvailable">
-        <mat-datepicker-toggle matSuffix [for]="pickerDateAvailable"></mat-datepicker-toggle>
-        <mat-datepicker #pickerDateAvailable></mat-datepicker>
-        <mat-error *ngIf="submitted && form.dateAvailable?.errors?.required">
-            Date available is <strong>required</strong>
+        <mat-error *ngIf="submitted && form.address?.errors?.required">
+            Address is <strong>required</strong>
         </mat-error>
-      </mat-form-field>
+    </mat-form-field>
 
-      <br>
+    <mat-form-field class="form-field">
+      <input matInput  placeholder="Phone" formControlName="phone"/>
 
-      <br>
-      <button mat-button color="primary" type="submit"> Register</button>
+      <mat-error *ngIf="submitted && form.phone?.errors?.required">
+          Phone name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
 
-    </form>
     <br>
-    <br>
-    <br>
-    <br>
-    {{ registerForm.value | json }}
-  </div>
+    <mat-form-field class="form-field">
+        <input matInput  placeholder="Email" formControlName="email"/>
 
-</div>
+        <mat-error *ngIf="submitted && form.email?.errors?.required">
+            Email name is <strong>required</strong>
+        </mat-error>
+
+        <mat-error *ngIf="submitted && form.email?.errors?.email">
+            Required a <strong>valid</strong> email
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <input matInput [matDatepicker]="pickerDateAvailable" placeholder="Date available" formControlName="dateAvailable">
+      <mat-datepicker-toggle matSuffix [for]="pickerDateAvailable"></mat-datepicker-toggle>
+      <mat-datepicker #pickerDateAvailable></mat-datepicker>
+      <mat-error *ngIf="submitted && form.dateAvailable?.errors?.required">
+          Date available is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <br>
+    <button mat-stroked-button color="primary" type="submit"> Register</button>
+
+  </form>
+    <br>
+

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
-
 export interface Enrollment {
+  uid: string;
   firstName: string;
   lastName: string;
   otherName: string;
@@ -12,8 +12,9 @@ export interface Enrollment {
   phone: string;
   email: string;
   dateAvailable: string;
+  photoUrl?: string;
+  active: boolean;
 }
-
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class EnrollmentsService {
 
   private enrollmentDoc: AngularFirestoreDocument;
   private enrollmentColl: AngularFirestoreCollection;
-  private path = 'anrollments';
+  private path = 'users';
 
   constructor(private angularFirestore: AngularFirestore) { }
 
@@ -31,10 +32,17 @@ export class EnrollmentsService {
   }
 
   public set(id: string, data: Enrollment): Promise<void> {
-    return this.angularFirestore.doc<Enrollment>(`${this.path}/${id}`).set(data);
+    return this.angularFirestore.doc<Enrollment>(`${this.path}/${id}`).set(data, { merge: true });
   }
 
-  public getCollection$(): Observable<Enrollment[]> {
-    return this.angularFirestore.collection<Enrollment>(this.path).valueChanges();
+  public update(id: string, data: any): Promise<void> {
+    return this.angularFirestore.doc<Enrollment>(`${this.path}/${id}`).update(data);
+  }
+
+  public getCollection$(query?): Observable<Enrollment[]> {
+
+    const colEnrRef =
+      query ? this.angularFirestore.collection<Enrollment>(this.path, query) : this.angularFirestore.collection<Enrollment>(this.path);
+    return colEnrRef.valueChanges();
   }
 }

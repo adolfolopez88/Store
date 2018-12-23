@@ -1,0 +1,18 @@
+.container {
+  padding: 1em;
+}
+
+.button-login {
+  width: 80%;
+  margin: 0.5em 0 0.5em 0;
+}
+
+
+.div-form {
+  padding: 1em;
+  text-align: center;
+  background: #ececec;
+  border-radius: 5px;
+  margin-top: 1em;
+  border: 1px solid #c1bebe;
+}

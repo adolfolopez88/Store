@@ -1,81 +1,75 @@
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Router } from '@angular/router';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { Router } from '@angular/router';
-import { take, switchMap } from 'rxjs/operators';
-import { Subject, Observable, of } from 'rxjs';
-
-export interface User {
-  uid: string;
-  email: string;
-  photoURL?: string;
-  displayName?: string;
-  favoriteColor?: string;
-}
+import {  first } from 'rxjs/operators';
+import { Observable, of, ReplaySubject } from 'rxjs';
+import { User } from '../models/support';
 
 @Injectable()
 export class AuthService {
 
-  userDoc: AngularFirestoreDocument<User>;
-  userCol: AngularFirestoreCollection<User>;
-  authState: firebase.User = null;
-  user$: Observable<User>;
+  public currentUser: Observable<any>;
+  authState: Observable<firebase.User>;
+  userSubject = new ReplaySubject();
 
-  constructor(private authFirebase: AngularFireAuth, private afs: AngularFirestore, private router: Router) {
-    this.userCol = this.afs.collection<User>('users');
-
-    this.user$ = this.authFirebase.authState.pipe(switchMap(user => {
-
-          if (user) {
-            return this.userCol.doc<User>(user.uid).valueChanges();
-          } else {
-            return of(null);
-          }
-    }));
+  constructor(public authFirebase: AngularFireAuth, private afs: AngularFirestore) {
+    this.authState = this.authFirebase.authState;
   }
 
-  get authenticated(): boolean {
-    return this.authState !== null;
+  get userSubjectG(): Observable<any> {
+    return this.userSubject;
   }
 
-  get currentUser(): any {
-    return this.authenticated ? this.authState : null;
-  }
-
-  get currentUserId(): string {
-    return this.authenticated ? this.authState.uid : '';
+  setCurrentUser(user: any) {
+    this.userSubject.next(user);
+    this.currentUser = of(user);
   }
 
   private socialSignIn(provider: firebase.auth.AuthProvider) {
     return this.authFirebase.auth.signInWithPopup(provider)
       .then((credential) => {
-        this.updateUser(credential.user);
-      })
-      .catch((error) => console.log(error));
+        this.createAndUpdateUser(credential.user);
+      });
+  }
+
+  public login(email: string, password: string): Promise<firebase.auth.UserCredential> {
+    return this.authFirebase.auth.signInWithEmailAndPassword(email, password);
   }
 
   public loginFacebook() {
     return this.socialSignIn(new firebase.auth.FacebookAuthProvider);
   }
 
-  public updateUser(user) {
+  private createAndUpdateUser(user) {
+
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
 
     const data = {
-      name: user.displayName,
+      uid: user.uid,
       email: user.email,
-      photoUrl: user.photoURL
+      photoUrl: user.photoURL,
+      roles: ['user']
     };
 
-    const doc = this.userCol.doc(user.uid).snapshotChanges().pipe(take(1));
-
-    return doc.subscribe(snap => {
-      return snap.payload.exists ? this.userCol.doc(user.uid).update(data) : this.userCol.doc(user.uid).set(data);
-    });
+    return  userRef.set(data, { merge: true });
   }
 
-  public logout() {
+  public createUser(email: string, password: string ) {
+    this.authFirebase.auth.createUserWithEmailAndPassword(email, password)
+      .then((user: firebase.auth.UserCredential) => { this.createAndUpdateUser(user.user); });
+  }
+
+  public logout(): Promise<void> {
     return this.authFirebase.auth.signOut();
   }
 
+  currentUserAsP(): Promise<firebase.User> {
+    return this.authFirebase.authState.pipe(first()).toPromise();
+  }
+
+  public getUser(uid: string): Observable<any>  {
+    return this.afs.doc(`users/${uid}`).valueChanges();
+  }
 }

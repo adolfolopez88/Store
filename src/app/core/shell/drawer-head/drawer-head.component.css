@@ -1,0 +1,41 @@
+.drawer-head {
+  height: 180px;
+  background-image: url('../../../../assets/img/poly5.jpg');
+  position: relative;
+  background-size: cover;
+  color: white;
+  vertical-align: bottom;
+  min-width: 250px;
+}
+
+.avatar {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  top: 1em;
+  left: 1em;
+  position: absolute;
+}
+
+.avatar img {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+}
+
+.detail {
+  width: 100%;
+  padding: .3em;
+  height: 60px;
+  position: absolute;
+  bottom: 0;
+  font-size: 15px;
+  color: white;
+  text-align: end;
+  padding-bottom: 1em;
+}
+
+.detail p {
+  padding: 0 1em 0 0;
+  margin: .2em
+}

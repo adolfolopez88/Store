@@ -1,0 +1,27 @@
+agm-map {
+  height: 400px;
+  widows: 100%;
+}
+
+.avatar {
+  border-radius: 50%;
+  border: 2px solid #078e05;
+}
+
+.div-avatar {
+  display: inline-block;
+  margin: .5em;
+}
+
+.div-users {
+  background: #272f3d;
+  border: 1px solid #404852;
+  min-height: 77px;
+}
+
+.div-detail {
+
+}
+.div-detail div {
+  padding: 1em;
+}

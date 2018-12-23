@@ -1,0 +1,55 @@
+<div fxLayout="row" fxLayoutAlign="center" >
+
+  <div fxLayout="row" fxLayoutAlign="center start">
+    <div fxFlex.xs="90" fxFlex.lg="50"  fxFlex.md="70">
+
+      <form [formGroup]="signInForm" (ngSubmit)="createUser()" >
+
+        <mat-form-field class="form-field">
+            <input matInput  placeholder="Email" formControlName="email"/>
+
+            <mat-error *ngIf="submitted && form.email?.errors?.required">
+                Email name is <strong>required</strong>
+            </mat-error>
+
+            <mat-error *ngIf="submitted && form.email?.errors?.email">
+                Required a <strong>valid</strong> email
+            </mat-error>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field class="form-field">
+            <input matInput  type="password" placeholder="Password" formControlName="password"/>
+
+            <mat-error *ngIf="submitted && form.password?.errors?.required">
+                password is <strong>required</strong>
+            </mat-error>
+
+            <mat-error *ngIf="submitted && form.password?.errors?.minlength">
+                password must be at least <strong>6 characters </strong>
+            </mat-error>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field>
+          <input matInput placeholder="Confirm Password" type="password" formControlName="confirmation"/>
+
+          <mat-error *ngIf="submitted && form.confirmation?.errors?.required">
+              confirmation is <strong>required</strong>
+          </mat-error>
+
+          <mat-error *ngIf="submitted && form.confirmation?.errors?.mustMatch">
+              Passwords must <strong>match</strong>
+          </mat-error>
+        </mat-form-field>
+        <br>
+
+        <button mat-button type="submit">Action</button>
+      </form>
+
+
+    </div>
+  </div>
+</div>
+
+

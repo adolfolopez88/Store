@@ -14,7 +14,6 @@
 
 .drawer-menu-container, mat-expansion-panel {
   background-color: #19212b;
-
 }
 
 .drawer-menu-item span, a {
@@ -52,5 +51,7 @@ mat-expansion-panel-header:hover {
 }
 
 .oulet {
-  min-height: 800px;
+  min-height: 900px;
 }
+
+

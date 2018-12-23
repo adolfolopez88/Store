@@ -1,0 +1,53 @@
+<mat-sidenav-container>
+  <mat-progress-bar #progressbar mode="query" color="accent" ></mat-progress-bar>
+  <app-toolbar></app-toolbar>
+
+  <mat-sidenav #sidenav class="drawer" mode="over" autosize>
+
+    <app-drawer-head></app-drawer-head>
+
+    <mat-list>
+
+      <mat-list-item routerLinkActive="active-route">
+        <mat-icon mat-list-icon>account_box</mat-icon>
+        <a routerLink="/users/profile" (click)="sidenav.toggle()" >Profile</a>
+      </mat-list-item>
+
+      <mat-list-item routerLinkActive="active-route">
+        <mat-icon mat-list-icon>business_center</mat-icon>
+        <a routerLink="/companies/joblist" (click)="sidenav.toggle()" >Jobs availables</a>
+      </mat-list-item>
+
+      <mat-list-item routerLinkActive="active-route">
+          <mat-icon mat-list-icon>schedule</mat-icon>
+          <a routerLink="/companies/job" (click)="sidenav.toggle()" >Schedule job</a>
+      </mat-list-item>
+
+      <mat-list-item routerLinkActive="active-route">
+        <mat-icon mat-list-icon>calendar_today</mat-icon>
+        <a routerLink="/timesheet/day" (click)="sidenav.toggle()" >Time sheet</a>
+      </mat-list-item>
+
+      <mat-list-item routerLinkActive="active-route">
+          <mat-icon mat-list-icon>calendar_today</mat-icon>
+          <a routerLink="/gadgets/test" (click)="sidenav.toggle()" >Time sheet</a>
+        </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon mat-list-icon>exit_to_app</mat-icon>
+        <a (click)="logOut()" >Logout</a>
+      </mat-list-item>
+
+    </mat-list>
+
+  </mat-sidenav>
+
+  <div fxLayout="row" fxLayoutAlign="center start">
+    <div fxFlex.xs="100" fxFlex.lg="50"  fxFlex.md="70">
+      <router-outlet>
+        <mat-spinner color="accent" #spinner></mat-spinner>
+      </router-outlet>
+    </div>
+  </div>
+
+</mat-sidenav-container>

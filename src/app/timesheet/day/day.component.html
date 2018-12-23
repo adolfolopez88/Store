@@ -1,0 +1,67 @@
+<div fxLayout="row" fxLayoutAlign="center" >
+
+  <div fxLayout="row" fxLayoutAlign="center start">
+    <div fxFlex.xs="100" fxFlex.lg="50"  fxFlex.md="70" class="div-timesheet">
+
+      <form [formGroup]="dayForm" (ngSubmit)="insertDay()" class="form-day" >
+
+        <mat-form-field class="form-field" ngClass.xs="input-80">
+          <input matInput [matDatepicker]="pickerDate" placeholder="Date" formControlName="date" >
+          <mat-datepicker-toggle matSuffix [for]="pickerDate"></mat-datepicker-toggle>
+          <mat-datepicker #pickerDate></mat-datepicker>
+          <mat-error *ngIf="submitted && form.date?.errors?.required">
+              Date available is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field class="form-field" ngClass.xs="input-80">
+          <input  matInput #placeAddress="ngx-places" placeholder="Address" formControlName="address" ngx-google-places-autocomplete />
+
+          <mat-error *ngIf="submitted && form.address?.errors?.required">
+              Address is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <br>
+        <mat-form-field class="form-field" ngClass.xs="input-35">
+          <input matInput placeholder="Start" [ngxTimepicker]="pickerStart" formControlName="start">
+          <ngx-material-timepicker #pickerStart></ngx-material-timepicker>
+
+          <mat-error *ngIf="submitted && form.start?.errors?.required">
+              Start time is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field" ngClass.xs="input-35">
+          <input matInput placeholder="Finish" [ngxTimepicker]="pickerFinish" formControlName="finish">
+          <ngx-material-timepicker #pickerFinish></ngx-material-timepicker>
+
+          <mat-error *ngIf="submitted && form.finish?.errors?.required">
+              finish time is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <br>
+
+        <mat-form-field class="form-field"  ngClass.xs="input-80">
+          <mat-select placeholder="Client" formControlName="client" >
+            <mat-option *ngFor="let employer of employers | async"  value="employer.id" >{{ employer.data.companyName }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="form-field"  ngClass.xs="input-80">
+          <mat-select placeholder="Supervisor" formControlName="supervisor" >
+            <mat-option value="kksmdka" >usuario</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <button mat-stroked-button type="submit">Action</button>
+      </form>
+
+      <app-sheet></app-sheet>
+    </div>
+  </div>
+</div>
+
+
+

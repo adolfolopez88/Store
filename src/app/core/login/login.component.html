@@ -1,0 +1,43 @@
+
+<div fxLayout="row" fxLayoutAlign="center start">
+  <div fxFlex.xs="90" fxFlex.lg="50"  fxFlex.md="70" class="div-form">
+
+    <img src="../../../assets/icons/icon-152x152.png">
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()" >
+
+      <mat-form-field class="form-field">
+          <input matInput  placeholder="Email" formControlName="email"/>
+
+           <mat-error *ngIf="submitted && form.email?.errors?.required">
+              Email name is <strong>required</strong>
+          </mat-error>
+
+          <mat-error *ngIf="submitted && form.email?.errors?.email">
+              Required a <strong>valid</strong> email
+          </mat-error>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="form-field">
+          <input matInput type="password" placeholder="Password" formControlName="password"/>
+
+          <mat-error *ngIf="submitted && form.password?.errors?.required">
+              password is <strong>required</strong>
+          </mat-error>
+
+          <mat-error *ngIf="submitted && form.password?.errors?.minlength">
+              password must be at least <strong>6 characters </strong>
+          </mat-error>
+      </mat-form-field>
+      <br>
+      <button mat-raised-button class="button-login" type="submit">Login</button>
+    </form>
+
+
+    <button mat-raised-button class="button-login" (click)="loginFacebook()">Facebook</button>
+    <button mat-raised-button class="button-login" routerLink="/users/signin" >Signin</button>
+    <button mat-raised-button class="button-login" (click)="logout()" >Log Out</button>
+    <br>
+  </div>
+</div>

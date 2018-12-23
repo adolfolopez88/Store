@@ -1,0 +1,21 @@
+
+  <div class="div-images-form" >
+
+    <h4>Upload File:</h4>
+    <input name="file" type="file" (change)="getFile($event)" accept=".png,.jpg" />
+    <br>
+    <button mat-icon-button color="primary" (click)="upload()" >Upload</button>
+    <br>
+    <mat-progress-bar mode="determinate" [value]="(uploadProgress | async)"></mat-progress-bar>
+    <br>
+  </div>
+
+  <div class="div-images-gallery" >
+
+    <div  *ngFor="let file of files" class="div-figure" >
+        <img src="{{ file.url }}" />
+    </div>
+  </div>
+
+
+

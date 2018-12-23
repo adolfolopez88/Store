@@ -1,0 +1,35 @@
+mat-sidenav {
+  overflow: hidden;
+  background: #272f3d;
+}
+
+mat-list {
+  border: 1px solid #404853;
+  padding-top: 0;
+}
+
+mat-list-item {
+  border-bottom: 1px solid #404852;
+}
+
+mat-list-item:last-child {
+  border: none;
+}
+
+mat-list-item a {
+  color: white;
+  text-decoration: none;
+}
+
+mat-spinner {
+  margin: 0 auto;
+  margin-top: 200px;
+}
+
+mat-list-item mat-icon {
+  color: white;
+}
+
+.active-route {
+  background-color: #38465f;
+}

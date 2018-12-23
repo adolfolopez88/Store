@@ -1,0 +1,6 @@
+<div class="message-box" [@messageAnimation]="animationState" (@messageAnimation.done)="hideAnimation()" *ngIf="show">
+  <mat-progress-bar mode="determinate" value="{{progress}}"> </mat-progress-bar>
+
+  <img src="../../../assets/icons/icon-72x72.png" alt="">
+    {{progress}}
+</div>

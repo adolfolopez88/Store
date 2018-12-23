@@ -1,0 +1,11 @@
+.content-list {
+  width: 301px;
+  position: fixed;
+  right: 0;
+  top: 20px;
+  z-index: 1;
+}
+
+app-message {
+  display: block;
+}

@@ -1,0 +1,12 @@
+<div class="drawer-head">
+
+  <div class="avatar">
+    <img src="{{ user.photoUrl }}" alt="">
+  </div>
+
+  <div class="detail">
+    <p class="mat-body"><strong>{{ user.firstName + ' ' + user.lastName }}</strong><br>
+      <strong *ngFor="let role of user.roles" >{{ role + ' ' }}</strong>
+      <br>{{ user.email }}</p>
+  </div>
+</div>

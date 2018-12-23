@@ -3,51 +3,58 @@ import { take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
-
-
 import { BehaviorSubject } from 'rxjs';
 
+export interface Message {
+
+  title: string;
+  body: string;
+  to: string;
+}
 @Injectable()
 export class MessagingService {
 
   messaging = firebase.messaging();
   currentMessage = new BehaviorSubject(null);
+  user: firebase.User;
 
   constructor(private angularFirestore: AngularFirestore, private afAuth: AngularFireAuth) { }
 
 
-  updateToken(token) {
-    this.afAuth.authState.pipe(take(1)).subscribe( (user: firebase.User) => {
-      console.log(user);
+  public updateToken(token) {
+    this.afAuth.authState.pipe(take(1)).subscribe((user: firebase.User) => {
       if (!user) { return; }
 
-      const data = { [user.uid]: token };
-      this.angularFirestore.collection('fcmTokens').add(data);
+      const data = { token: token };
+      this.angularFirestore.collection('fcmTokens').doc(user.uid).set(data);
     });
   }
 
-  getPermission() {
-      this.messaging.requestPermission()
-      .then(() => {
-        console.log('Notification permission granted.');
-        return this.messaging.getToken();
-      })
-      .then(token => {
-        console.log(token);
-        this.updateToken(token);
-      })
-      .catch((err) => {
-        console.log('Unable to get permission to notify.', err);
-      });
-    }
+  public getPermission() {
+    this.messaging.requestPermission()
+    .then(() => {
+      console.log('Notification permission granted.');
+      return this.messaging.getToken();
+    })
+    .then(token => {
+      console.log(token);
+      this.updateToken(token);
+    })
+    .catch((err) => {
+      console.log('Unable to get permission to notify.', err);
+    });
+  }
 
-    receiveMessage() {
-       this.messaging.onMessage((payload) => {
-        console.log('Message received. ', payload);
-        this.currentMessage.next(payload);
-      });
+  public receiveMessage() {
+    this.messaging.onMessage((payload) => {
+      console.log('Message received. ', payload);
+      this.currentMessage.next(payload);
+    });
+  }
 
-    }
+  public pushMessage(message: Message) {
+    return this.angularFirestore.collection('messages').add(message);
+  }
 }
 
 

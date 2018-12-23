@@ -1,0 +1,62 @@
+<agm-map [latitude]='-33.882901' [longitude]="151.213884">
+</agm-map>
+
+<!-- <div class="div-users">
+  <div class="div-avatar" *ngFor="let job of job.members" >
+    <img src="{{ job.photoUrl }}" alt="" class="avatar">
+  </div>
+</div> -->
+
+<div fxLayout="row" fxLayoutAlign="center start" class="div-detail">
+
+  <div fxFlex.xs="100" fxFlex.lg="50"  fxFlex.md="100">
+
+
+  <mat-form-field  ngClass.xs="input-80">
+    <input type="text" placeholder="Team member" aria-label="Number"
+      matInput [matAutocomplete]="auto" [formControl]="inputControl">
+
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"
+    [displayWith]="displayFn" (optionSelected)="returnFn($event)" >
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{ option.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <br>
+  <button mat-stroked-button (click)="addMember()"> Add</button>
+
+  <mat-list>
+    <mat-list-item *ngFor="let job of job?.members">
+      <img src="{{ job.photoUrl }}" alt="" class="avatar">
+      <h4 mat-line> <strong>{{ job.name }}</strong> </h4>
+      <span mat-line>labourer</span>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+
+  </div>
+
+  <div fxFlex.xs="100" fxFlex.lg="100"  fxFlex.md="100">
+
+  </div>
+
+
+</div>
+
+
+<!-- <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+            <mat-panel-title>
+              Workers
+            </mat-panel-title>
+            <mat-panel-description>
+              Type your name and age
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+
+
+
+    </mat-expansion-panel>
+  </mat-accordion> -->

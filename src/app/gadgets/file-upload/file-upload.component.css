@@ -1,0 +1,21 @@
+.div-images-form {
+  padding-left: 1em;
+  width: 70%;
+}
+
+.div-images-gallery {
+  margin: 0 auto;
+  width: 95%;
+}
+
+.div-figure{
+  width: 50%;
+  display: inline-block;
+  height: 200px;
+}
+
+.div-figure img{
+  height: 100%;
+}
+
+   

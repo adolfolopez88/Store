@@ -1,0 +1,35 @@
+<mat-form-field  ngClass.xs="input-80">
+  <input type="text" placeholder="Team member" aria-label="Number" matInput
+  [formControl]="inputControl" [matAutocomplete]="auto" >
+
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"
+  [displayWith]="displayFn" (optionSelected)="returnFn($event)">
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+     {{ option.value }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+<br>
+<button mat-stroked-button (click)="addOption()" type="button">Add</button>
+<br>
+
+<mat-list ngClass="submittedError ?  'mat-list-error' :  '' ">
+
+  <mat-list-item *ngIf="submittedError">
+    <mat-error>Members are <strong>required</strong></mat-error>
+  </mat-list-item>
+
+  <mat-list-item *ngFor="let option of optionsSelected ">
+    <mat-icon mat-list-icon *ngIf="option.photoUrl === null; else avatar">account_circle</mat-icon>
+
+    <ng-template #avatar>
+        <img class="avatar" src="{{ option.photoUrl }}" alt="">
+    </ng-template>
+
+    <h4 mat-line><strong>{{ option.value }}</strong></h4>
+    <p mat-line>labourer</p>
+  <!--   <button mat-stroked-button (click)="activateEnrollment(enroll.uid)">Activate</button> -->
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
+<br>

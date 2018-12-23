@@ -1,0 +1,30 @@
+<form [formGroup]="formJob" (ngSubmit)="register()" >
+
+  <mat-form-field ngClass.xs="input-80">
+    <input  matInput #placeAddress="ngx-places" placeholder="Address"
+      formControlName="address" ngx-google-places-autocomplete  />
+
+    <mat-error *ngIf="submitted && form.address.errors?.required">
+    Address is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field ngClass.xs="input-80">
+      <input matInput [matDatepicker]="pickerDate" placeholder="Date" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="pickerDate"></mat-datepicker-toggle>
+      <mat-datepicker #pickerDate></mat-datepicker>
+      <mat-error *ngIf="submitted && form.date?.errors?.required">
+          Date of birth date is <strong>required</strong>
+      </mat-error>
+  </mat-form-field>
+  <br>
+
+  <app-user-list (optionsList)="membersTeam($event)" [options]="companyMembers"
+  [submittedError]="haveMemberError"></app-user-list>
+  <br>
+
+  <button mat-stroked-button type="submit" >Register</button>
+</form>
+
+{{ user | json}}
+{{ company | json }}

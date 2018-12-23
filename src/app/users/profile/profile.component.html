@@ -1,0 +1,21 @@
+
+
+<div class="div-head-profile">
+    <div class="div-head-avatar">
+      <img @avatarAnimation src="https://graph.facebook.com/10215309007976777/picture" alt="">
+    </div>
+</div>
+
+<mat-tab-group>
+  <mat-tab label="Details">
+
+    <app-enroll [enrollUserData]="user"></app-enroll>
+    <br>
+    <app-file-upload [docPath]="path"></app-file-upload>
+
+  </mat-tab>
+  <mat-tab label="Timesheet"> Content 2 </mat-tab>
+  <mat-tab label="Invoices"> Content 3 </mat-tab>
+  <mat-tab label="Schedule"> Content 3 </mat-tab>
+</mat-tab-group>
+

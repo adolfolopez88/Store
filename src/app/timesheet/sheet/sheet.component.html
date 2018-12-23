@@ -1,0 +1,8 @@
+<mat-accordion>
+  <mat-expansion-panel  *ngFor="let day of sheet">
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ day.date.toDate() | date: 'dd/MM/yyyy'  }} </mat-panel-title>
+      <mat-panel-description>{{ day.address }}</mat-panel-description>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+</mat-accordion>

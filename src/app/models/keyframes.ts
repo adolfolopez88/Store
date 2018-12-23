@@ -46,10 +46,32 @@ export const fadeInRight = [
   style({ opacity: 1, transform: 'translate3d(0, 0, 0)'})
 ];
 
+export const fadeOutRight = [
+  style({ opacity: 1, offset: 0 }),
+  style({ opacity: 0, transform: 'translate3d(100%, 0, 0)', offset: 1 })
+];
+
+export const moveDown = [
+  style({opacity: 1, transform: 'translateY(0px)', offset: 0 }),
+  style({opacity: 1, transform: 'translateY(100px)', offset: 1 }),
+];
+
+export const messageAnimation = [
+  style({ opacity: 0, transform: 'translate3d(100% , 0, 0)', offset: 0 }),
+  style({ opacity: 1, transform: 'translate3d(0, 0, 0)', offset: 1 }),
+];
 
 
-/* gallery flsh event*/
+export const ZoomIn = [
+  style({ opacity: 0, transform: 'scale3d(0.3, 0.3, 0.3', offset: 0 }),
+  style({ opacity: .5, transform: 'scale3d(0.5, 0.5, 0.5', offset: .5 }),
+  style({ opacity: .8, transform: 'scale3d(0.6, 0.6, 0.6', offset: .8 }),
+  style({ opacity: 1, transform: 'scale3d(0.9, 0.9, 0.9', offset: .8 }),
+  style({ opacity: 1, offset: 1 }),
+];
 
-export function galleryFlash( ) {
+
+
+export function setTraslation(from, to) {
 
 }

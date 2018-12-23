@@ -1,0 +1,11 @@
+<mat-list [@listAnimation]="jobs">
+  <mat-list-item *ngFor="let job of jobs"  >
+    <div class="avatar" ><img  src="../../../assets/icons/icon-72x72.png" alt=""></div>
+
+    <h4 mat-line>{{ job.address }}</h4>
+    <p mat-line>{{ job.date.toDate() | date: 'dd/MM/yyyy' }}</p>
+
+    <button mat-stroked-button  routerLink="/companies/jobdetail/{{job.companyId}}/{{job.id}}" > Detail</button>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
